@@ -1,0 +1,85 @@
+/*
+ *	COLORS
+ */
+
+$blue: #00D9E3;
+$white: #FFFFFF;
+
+
+/*
+ *	FONT FAMILIES
+ */
+
+$heading-font: 'Purple Purse', cursive;
+$body-font: 'Raleway', sans-serif;
+
+/*
+ *	MIXINS
+ */
+
+@mixin heading($color) {
+	font-family: $heading-font;
+	font-size: 35pt;
+	color: $color;
+}
+
+@mixin regularfont() {
+	font-family: $body-font;
+	font-size: 15pt;
+}
+
+@mixin centerXY() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin centerX() {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+@mixin centerY() {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@mixin round-btn($color) {
+	background-color: $color;
+	width: 50px;
+	height: 50px;
+	border-radius: 30px;
+	border: none;
+	margin-top: 20px;
+	margin-left: 20px;
+	@include regularfont();
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:focus {
+		outline: none; 
+	}
+}
+
+@mixin corner-btn($color, $width) {
+	background-color: $color;
+	width: $width;
+	height: 35px;
+	border-radius: 30px;
+	border: none;
+	margin-top: 20px;
+	@include regularfont();
+
+	&:hover {
+		cursor: pointer;
+	}
+	
+	&:focus {
+		outline: none; 
+	}
+}

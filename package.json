@@ -1,0 +1,33 @@
+{
+  "name": "annonssystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "express-validator": "^3.1.2",
+    "jquery": "^3.2.1",
+    "mysql": "^2.13.0",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "ejs": "^2.5.6",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-ruby-sass": "^2.1.1",
+    "gulp-sass": "^2.3.2",
+    "nodemon": "^1.11.0"
+  }
+}

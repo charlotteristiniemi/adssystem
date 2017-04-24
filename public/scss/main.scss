@@ -1,0 +1,79 @@
+@import 'setup';
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	margin: 0;
+	@include heading($white);
+}
+
+#start {
+	width: 100vw;
+	height: 100vh;
+	background-color: $blue;
+
+	.home-btn {
+		@include round-btn($white);
+	}
+
+	.container {
+		@include centerXY();
+
+		h1 {
+			text-align: center;
+		}
+
+		div {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			margin-top:20px;
+
+			button {
+				@include corner-btn($white, 45%);
+			}
+		}
+
+		button {
+			@include corner-btn($white, 100%);
+		}
+
+		/*SUBSCRIBER*/
+		p {
+			margin-top: 20px;
+		}
+
+		form {
+			display: flex;
+			justify-content: space-between;
+
+			input {
+				width: 75%;
+				height: 35px;
+				border: none;
+				background-color: $blue;
+				border-bottom: 2px solid $white;
+				margin-top: 20px;
+				@include regularfont();
+				color: $white;
+
+				&:focus {
+					outline: none;
+				}
+
+				&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				  color: rgba(255,255,255,0.6);
+				  @include regularfont();
+				}
+			}
+
+			#sub-nr {
+				@include corner-btn($white, 20%);
+			}
+		}
+	}
+}
+

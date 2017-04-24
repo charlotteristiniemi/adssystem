@@ -1,0 +1,13 @@
+<%- include layouts/header.ejs %>
+	<section id="start">
+		<button class="home-btn" onclick="home()">&lt;&#45;</button>
+		<div class="container">
+			<h1><%= title %></h1>
+			<p><%= error %></p>
+			<form method="POST">
+				<input type="text" name="subscribernumber" placeholder="Prenumerationsnummer...">	
+				<button id="sub-nr" type="submit">Verifiera</button>
+			</form>
+		</div>
+	</section>
+<%- include layouts/footer.ejs %>
