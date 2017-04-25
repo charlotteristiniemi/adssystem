@@ -1,0 +1,36 @@
+<%- include layouts/header.ejs %>
+	<section id="start">
+		<button class="home-btn" onclick="home()">&lt;&#45;</button>
+		<div class="container">
+			<h1>Din information</h1>
+			<form id="change-sub-data" method="POST">
+				<table>
+					<tr>
+				    <td class="right">Namn: </td>
+				    <td><input type="text" name="namn" value="<%= subscriber.pr_namn %>"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Telefon: </td>
+				    <td><input type="text" name="telefon" value="<%= subscriber.pr_telefon %>"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Utdelningsadress: </td>
+				    <td><input type="text" name="utdelningsadress" value="<%= subscriber.pr_utdelningsadress %>"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Postnummer: </td>
+				    <td><input type="text" name="postnummer" value="<%= subscriber.pr_postnummer %>"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Ort: </td>
+				    <td><input type="text" name="ort" value="<%= subscriber.pr_ort %>"></td>
+				  </tr>
+				</table>
+				<div id="button-container">
+					<button onclick="cancelChange()">Avbryt</button>
+					<button type="submit">Ändra</button>
+				</div>
+			</form>
+		</div>
+	</section>
+<%- include layouts/footer.ejs %>

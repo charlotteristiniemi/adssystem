@@ -1,0 +1,34 @@
+<%- include layouts/header.ejs %>
+	<section id="start">
+		<button class="home-btn" onclick="home()">&lt;&#45;</button>
+		<div class="container">
+			<h1>Din information</h1>
+			<table>
+				<tr>
+			    <td class="right">Namn: </td>
+			    <td><%= subscriber.pr_namn %></td>
+			  </tr>
+			  <tr>
+			    <td class="right">Telefon: </td>
+			    <td><%= subscriber.pr_telefon %></td>
+			  </tr>
+			  <tr>
+			    <td class="right">Utdelningsadress: </td>
+			    <td><%= subscriber.pr_utdelningsadress %></td>
+			  </tr>
+			  <tr>
+			    <td class="right">Postnummer: </td>
+			    <td><%= subscriber.pr_postnummer %></td>
+			  </tr>
+			  <tr>
+			    <td class="right">Ort: </td>
+			    <td><%= subscriber.pr_ort %></td>
+			  </tr>
+			</table>
+			<div id="button-container">
+				<button onclick="change();">Ändra</button>
+				<button onclick="goToMakeAd()">Okej, gå vidare</button>
+			</div>
+		</div>
+	</section>
+<%- include layouts/footer.ejs %>

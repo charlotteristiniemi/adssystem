@@ -21,6 +21,7 @@ h1 {
 
 	.container {
 		@include centerXY();
+		width: 560px;
 
 		h1 {
 			text-align: center;
@@ -44,9 +45,10 @@ h1 {
 		/*SUBSCRIBER*/
 		p {
 			margin-top: 20px;
+			height: 20px;
 		}
 
-		form {
+		#sub-num-form {
 			display: flex;
 			justify-content: space-between;
 
@@ -72,6 +74,36 @@ h1 {
 
 			#sub-nr {
 				@include corner-btn($white, 20%);
+			}
+		}
+
+		/*SUBSCRIBER DATA*/
+		table {
+			width: 100%;
+			margin-top: 30px;
+
+			td {
+				text-align: left;
+				@include regularfont();
+				color: $white;
+				margin-left: 10px;
+				height: 35px;
+				width: 270px;
+
+				input {
+					height: 25px;
+					@include regularfont();
+					color: black;
+					
+					&:focus {
+						outline: none;
+					}
+				}
+			}
+
+			.right {
+				text-align: right;
+				margin-right: 10px;
 			}
 		}
 	}
