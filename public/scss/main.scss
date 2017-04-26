@@ -27,6 +27,14 @@ h1 {
 			text-align: center;
 		}
 
+		.data-msg {
+			margin: 0;
+
+			ul {
+				margin: 0;
+			}
+		}
+
 		div {
 			display: flex;
 			flex-direction: row;

@@ -65,12 +65,45 @@ router.get('/changeSubscriberData', function(req, res) {
 	res.render('changeSubscriberData', { subscriber: sub})
 });
 
+
+/* 
+ * PUT Change subscriberData view
+ */
+
+router.put('/changeSubscriberData', function(req, res) {
+	
+	//validation
+  req.assert('namn','Titel måste fyllas i').notEmpty();
+  req.assert('telefon','Titel måste fyllas i').notEmpty();
+  req.assert('utdelningsadress','Titel måste fyllas i').notEmpty();
+  req.assert('postnummer','Titel måste fyllas i').notEmpty();
+  req.assert('ort','Titel måste fyllas i').notEmpty();
+
+  var errors = req.validationErrors();
+  if(errors){
+    res.status(400).json(errors);
+    return;
+  }
+
+	var input = req.body;
+
+	var data = {
+ 		namn 							: input.namn,
+ 		telefon						: input.telefon,
+ 		utdelningsadress 	: input.utdelningsadress,
+ 		postnummer	 			: input.postnummer, 
+ 		ort  							: input.ort
+ 	};
+
+ 	console.log('data: '+data);
+
+ 	/*HÄR SKA MAN PUTTA TILL PR_SYS SAMT PUTTA TILL AN_SYS*/
+
+	res.sendStatus(200);
+});
 /*NÄR MAN GÅR VIDARE MÅSTE SESSION TAS BORT...*/
 
 
-router.post('changeSubscriberData', function(req, res) {
-	console.log('req.body.namn: '+req.body.namn);
-});
 
 module.exports = router;
 

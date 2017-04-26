@@ -3,6 +3,10 @@
 		<button class="home-btn" onclick="home()">&lt;&#45;</button>
 		<div class="container">
 			<h1>Din information</h1>
+			<!-- ERRORMESSAGE -->
+			<div class="data-msg">
+			  <ul class="error-list"></ul>
+			</div>
 			<form id="change-sub-data" method="POST">
 				<table>
 					<tr>
@@ -26,11 +30,11 @@
 				    <td><input type="text" name="ort" value="<%= subscriber.pr_ort %>"></td>
 				  </tr>
 				</table>
-				<div id="button-container">
-					<button onclick="cancelChange()">Avbryt</button>
-					<button type="submit">Ändra</button>
-				</div>
 			</form>
+			<div id="button-container">
+				<button onclick="cancelChange()">Avbryt</button>
+				<button onclick="putSubscriberData()">Ändra</button>
+			</div>
 		</div>
 	</section>
 <%- include layouts/footer.ejs %>
