@@ -87,7 +87,7 @@ function adCompany() {
 		type: "post",
 		data: $("input").serialize(),
     success: function(data, status, xhr){
-      window.location.href = '/';
+      window.location.href = '/getCompanyId';
       return false;
     },
     error:function(xhr, status, error){

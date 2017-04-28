@@ -195,6 +195,59 @@ router.get('/company', function(req, res) {
 });
 
 
+/* 
+ * POST Add New Company
+ */
+
+router.post('/company', function(req, res) {
+	
+	//validation
+  req.assert('namn','Namn måste fyllas i').notEmpty();
+  req.assert('organisationsnummer','Organisationsnummer måste fyllas i').notEmpty();
+  req.assert('telefon','Telefonnummer måste fyllas i').notEmpty();
+  req.assert('utdelningsadress','Utdelningsaddress måste fyllas i').notEmpty();
+  req.assert('postnummer','Postnummer måste fyllas i').notEmpty();
+  req.assert('ort','Ort måste fyllas i').notEmpty();
+  req.assert('faktura_utdelningsadress','Utdelningsaddressen för fakturan måste fyllas i').notEmpty();
+  req.assert('faktura_postnummer','Postnummret för fakturan måste fyllas i').notEmpty();
+  req.assert('faktura_ort','Orten för fakturan måste fyllas i').notEmpty();
+
+  var errors = req.validationErrors();
+  if(errors){
+    res.status(400).json(errors);
+    return;
+  }
+
+	var com = req.body;
+
+	connection.query( "CALL InsertCompany('"+com.namn+"', "+com.organisationsnummer+", "+com.telefon+
+			", '"+com.utdelningsadress+"', "+com.postnummer+", '"+com.ort+"', '"+com.faktura_utdelningsadress+
+			"', "+com.faktura_postnummer+", '"+com.faktura_ort+"');", function(err, row, field) {
+		if (err) console.log(err);
+		res.sendStatus(200);
+	});
+});
+
+
+/* 
+ * GET Company Id
+ */
+
+router.get('/getCompanyId', function(req, res) {
+	connection.query( 'SELECT @id := MAX(an_id) FROM tbl_annonsorer;', function(err, row, field) {
+		var id = row[0]["@id := MAX(an_id)"];
+		console.log('id: '+ id);
+		res.redirect('makeAd/'+id);
+	});
+});
+
 
 module.exports = router;
 
+/*
+
+lägga till annonsör när man går vidare.
+
+visa annonser
+
+*/
