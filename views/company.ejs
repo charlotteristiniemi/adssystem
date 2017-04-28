@@ -1,0 +1,63 @@
+<%- include layouts/header.ejs %>
+	<section id="start">
+		<button class="home-btn" onclick="home()">&lt;&#45;</button>
+		<div class="container">
+			<h1>Fyll i företagsuppgifter</h1>
+			<!-- ERRORMESSAGE -->
+			<div class="data-msg">
+			  <ul class="error-list"></ul>
+			</div>
+			<form id="change-sub-data" method="POST">
+				<table>
+					<tr>
+				    <td class="right">Namn: </td>
+				    <td><input type="text" name="namn"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Organisationsnummer: </td>
+				    <td><input type="text" name="organisationsnummer"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Telefon: </td>
+				    <td><input type="text" name="telefon"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Utdelningsadress: </td>
+				    <td><input type="text" name="utdelningsadress"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Postnummer: </td>
+				    <td><input type="text" name="postnummer"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Ort: </td>
+				    <td><input type="text" name="ort"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Fakturaadress</td>
+				    <td></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Utdelningsadress (faktura): </td>
+				    <td><input type="text" name="faktura_utdelningsadress"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Postnummer (faktura): </td>
+				    <td><input type="text" name="faktura_postnummer"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Ort (faktura): </td>
+				    <td><input type="text" name="faktura_ort"></td>
+				  </tr>
+				</table>
+			</form>
+			<button onclick="adCompany()">Godkänn företag</button>
+		</div>
+	</section>
+<%- include layouts/footer.ejs %>
+
+<!-- 
+			fakturaadress 
+				utdelningsadress, 
+				postnummer samt 
+				ort. -->

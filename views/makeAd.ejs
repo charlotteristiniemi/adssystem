@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Annonssystem</title>
+		<meta charset="utf-8">
+
+		<link href="https://fonts.googleapis.com/css?family=Purple+Purse|Raleway:300" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
+	</head>
+	<body>
+	<section id="start">
+		<button class="home-btn" onclick="home()">&lt;&#45;</button>
+		<div class="container">
+			<h1>Skapa annons</h1>
+			<!-- ERRORMESSAGE -->
+			<div class="data-msg">
+			  <ul class="error-list"></ul>
+			</div>
+			<form id="change-sub-data" method="POST">
+				<table>
+					<tr>
+				    <td class="right">Ditt id (ändra ej): </td>
+				    <td><input type="text" name="id" value="<%= annonsor[0].an_id %>" ></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Rubrik: </td>
+				    <td><input type="text" name="rubrik"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Innehåll: </td>
+				    <td><textarea type="text" name="innehall"></textarea></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Varans pris: </td>
+				    <td><input type="text" name="pris"></td>
+				  </tr>
+				  <tr>
+				    <td class="right">Du betalar: </td>
+				    <td><% if (!annonsor[0].an_is_foretag) { -%>
+				    	0 kr
+				    <% } else { -%>
+				    	40 kr
+				    <% } -%></td>
+				  </tr>
+				</table>
+			</form>
+			<button onclick="postAd()">Posta annons</button>
+		</div>
+	</section>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
+	</body>
+</html>

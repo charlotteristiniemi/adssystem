@@ -107,6 +107,17 @@ h1 {
 						outline: none;
 					}
 				}
+
+				textarea {
+					height: 55px;
+					border: none;
+					@include regularfont();
+					color: black;
+					
+					&:focus {
+						outline: none;
+					}
+				}
 			}
 
 			.right {

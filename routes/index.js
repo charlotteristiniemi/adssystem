@@ -71,13 +71,14 @@ router.get('/changeSubscriberData', function(req, res) {
  */
 
 router.put('/changeSubscriberData', function(req, res) {
-	
+	var id = req.session.subscriber.pr_id;
+
 	//validation
-  req.assert('namn','Titel måste fyllas i').notEmpty();
-  req.assert('telefon','Titel måste fyllas i').notEmpty();
-  req.assert('utdelningsadress','Titel måste fyllas i').notEmpty();
-  req.assert('postnummer','Titel måste fyllas i').notEmpty();
-  req.assert('ort','Titel måste fyllas i').notEmpty();
+  req.assert('namn','Namn måste fyllas i').notEmpty();
+  req.assert('telefon','Telefonnummer måste fyllas i').notEmpty();
+  req.assert('utdelningsadress','Utdelningsaddress måste fyllas i').notEmpty();
+  req.assert('postnummer','Postnummer måste fyllas i').notEmpty();
+  req.assert('ort','Ort måste fyllas i').notEmpty();
 
   var errors = req.validationErrors();
   if(errors){
@@ -95,41 +96,105 @@ router.put('/changeSubscriberData', function(req, res) {
  		ort  							: input.ort
  	};
 
- 	console.log('data: '+data);
+ 	request({
+    method: 'PUT',
+    url:'http://localhost:4000/putSubscriberData/'+data.namn+'/'+data.telefon+'/'+data.utdelningsadress+'/'+data.postnummer+'/'+data.ort+'/'+id
+	}, 
+	function(error, response, body) {
+		if (error) console.log(error);
 
- 	/*HÄR SKA MAN PUTTA TILL PR_SYS SAMT PUTTA TILL AN_SYS*/
+	  if (response.statusCode === 404) {
+	  	console.log('Error, update went wrong.. status code 404 not found');
+	  }
+	  else {
+	  	var data = JSON.parse(body);
+	  	req.session.subscriber = data;
 
-	res.sendStatus(200);
+	  	connection.query( "SELECT * FROM tbl_annonsorer WHERE an_pr_id = '" + data.pr_id + "'", function (err1, row1, field1) {
+	 			if (err1) console.log(err1);
+
+	  		if (row1[0] == undefined) {
+	  			connection.query( "INSERT INTO tbl_annonsorer(an_namn, an_telefon, an_utdelningsadress, an_postnummer, an_ort, an_is_foretag, an_pr_id) "+
+						"VALUES ('"+data.pr_namn+"', "+data.pr_telefon+", '"+data.pr_utdelningsadress+"', "+data.pr_postnummer+", '"+data.pr_ort+"', 0, "+data.pr_id+");", function (err2, row2, field2){
+						if (err2) console.log(err2);
+						res.sendStatus(200);
+					});
+	  		}
+	  		else {
+
+	  			connection.query( "CALL UpdateAnnonsor('"+data.pr_namn+"', '"+data.pr_utdelningsadress+"', "+data.pr_postnummer+", '"+data.pr_ort+"', "+data.pr_telefon+", "+data.pr_id+")", function(err3, row3, field3) {
+	  				if (err3) console.log(err3);
+	  				res.sendStatus(200);
+	  			});
+	  		}
+	  	});
+	  }
+	});
 });
-/*NÄR MAN GÅR VIDARE MÅSTE SESSION TAS BORT...*/
+
+
+/* 
+ * GET Ad id
+ */
+
+router.get('/getAdId', function(req, res) {
+	var id = req.session.subscriber.pr_id;
+	connection.query( "SELECT an_id FROM tbl_annonsorer WHERE an_pr_id = "+id, function(err, row, field) {
+		if (err) console.log(err);
+		var id = row[0].an_id;
+		res.redirect('makeAd/'+id);
+	});
+});
+
+/* 
+ * GET Make ad view
+ */
+
+router.get('/makeAd/:id', function(req, res) {
+	var id = req.params.id;
+	connection.query( "SELECT an_is_foretag, an_id FROM tbl_annonsorer WHERE an_id = "+id, function(err, row, field) {
+		res.render('makeAd', { annonsor: row});
+	});
+});
+
+
+/* 
+ * POST Ad
+ */
+
+router.post('/makeAd', function(req, res) {
+	
+	//validation
+  req.assert('id','Id måste fyllas i').notEmpty();
+  req.assert('rubrik','Rubrik måste fyllas i').notEmpty();
+  req.assert('innehall','Innehåll måste fyllas i').notEmpty();
+  req.assert('pris','Pris måste fyllas i').notEmpty();
+
+  var errors = req.validationErrors();
+  if(errors){
+    res.status(400).json(errors);
+    return;
+  }
+
+	var ad = req.body;
+
+	connection.query( "CALL InsertAd("+ad.id+", '"+ad.rubrik+"', '"+ad.innehall+"', "+ad.pris+");", function(err, row, field) {
+		if (err) console.log(err);
+
+		res.sendStatus(200);
+	});
+});
+
+
+/* 
+ * GET Company
+ */
+
+router.get('/company', function(req, res) {
+	res.render('company');
+});
 
 
 
 module.exports = router;
 
-
-
-
-
-
-/* 
- * POST Request to subscriber system
- */
-
-/*
-	request.post({
-		url:'http://localhost:4000/getSubscriberData/'+subNr
-	}, 
-	function(err, res, body) {
-		if (err) console.log(err);
-	  
-	  var data = JSON.parse(body);
-
-	  if (res.statusCode === 404) {
-			
-	  }
-	  else {
-
-	  }
-	});
-*/
