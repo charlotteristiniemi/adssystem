@@ -1,0 +1,27 @@
+<%- include layouts/header.ejs %>
+	<section id="start-ads">
+		<button class="home-btn" onclick="home()">&lt;&#45;</button>
+		<h1>Annonser</h1>
+		<div class="ad-container">
+			
+			<% if (ad.length) { -%>
+				<% for (var i = 0; i < ad.length; i++) { -%>
+					<div class="ad">
+						<h3><%= ad[i].ad_rubrik %></h3>
+						<% if (ad[i].an_is_foretag) { -%>
+							<p>(Företagsannons)</p>
+						<% } %>
+						<p><%= ad[i].ad_innehall %></p>
+						<hr>
+						<p>Pris: <%= ad[i].ad_pris %> kr</p>
+						<p>Kontakta: <%= ad[i].an_namn %></p>
+						<p>Telefon: <%= ad[i].an_telefon %></p>
+					</div>
+				<% } -%>
+			<% } else { -%>
+				<p>Inga annonser inlagda.</p>
+			<% } -%>
+
+		</div>
+	</section>
+<%- include layouts/footer.ejs %>

@@ -11,6 +11,10 @@ function subscriber() {
 }
 
 function seeAds() {
+  window.location.href = '/ads';
+}
+
+function seeAds() {
 	window.location.href = '/ads';
 }
 
@@ -60,8 +64,7 @@ function postAd() {
 		type: "post",
 		data: $("input, textarea").serialize(),
     success: function(data, status, xhr){
-      window.location.reload();
-      // window.location.href = '/ads';
+      window.location.href = '/ads';
       return false;
     },
     error:function(xhr, status, error){

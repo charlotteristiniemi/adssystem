@@ -124,6 +124,40 @@ h1 {
 				text-align: right;
 				margin-right: 10px;
 			}
+		}		
+	}
+}
+
+#start-ads {
+	width: 100vw;
+	background-color: $blue;
+
+	.home-btn {
+		@include round-btn($white);
+	}
+
+	/*ADS*/
+	h1 {
+		width: 100%;
+		text-align: center;
+	}
+
+	.ad-container {
+		// @include centerX();
+		width: 560px;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		padding-bottom: 200px;
+
+		.ad {
+			width: 100%;
+			background-color: $white;
+			border-radius: 6px;
+			padding: 15px;
+			display: block;
+			margin-top: 20px;
 		}
 	}
 }

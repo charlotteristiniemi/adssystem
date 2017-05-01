@@ -10,7 +10,19 @@ connection.connect(); //connect to database
  */
 
 router.get('/', function(req, res) {
-	res.render('index', {title: 'Välkommen till mitt annonssystem'})
+	res.render('index', { title: 'Välkommen till mitt annonssystem' })
+});
+
+
+/* 
+ * GET home page
+ */
+
+router.get('/ads', function(req, res) {
+	connection.query( 'SELECT * FROM tbl_ads, tbl_annonsorer WHERE ad_an_id = an_id', function(err, row, field) {
+		if (err) console.log(err);
+		res.render('ads', { ad: row })
+	});
 });
 
 
@@ -19,7 +31,7 @@ router.get('/', function(req, res) {
  */
 
 router.get('/subscriber', function(req, res) {
-	res.render('subscriber', {title: 'Ange ditt prenumerationsnummer', error: ''})
+	res.render('subscriber', { title: 'Ange ditt prenumerationsnummer', error: '' })
 });
 
 
